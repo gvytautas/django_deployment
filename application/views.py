@@ -53,7 +53,7 @@ def user_account(request):
         form = EditUserAccountForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('user_account')
+            return redirect('application:user_account')
     else:
         form = EditUserAccountForm(
             initial={
