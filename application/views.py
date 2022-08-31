@@ -50,7 +50,7 @@ def sign_up(request):
 
 def user_account(request):
     if request.method == 'POST':
-        form = EditUserAccountForm(request.POST, request.FILES)
+        form = EditUserAccountForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('application:user_account')
@@ -60,5 +60,6 @@ def user_account(request):
                 'email': request.user.email,
                 'image': request.user.image
             }
+            , instance=request.user
         )
     return render(request, 'user_account.html', context={'form': form})
